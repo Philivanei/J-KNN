@@ -1,16 +1,18 @@
 package KNN;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ButtonAction {
 
-    Point unclassifiedPoint;
-    ArrayList classifiedPoints;
+    private Point unclassifiedPoint;
+    private ArrayList classifiedPoints;
 
     public ButtonAction() {
 
     }
 
+    //TODO: die testdaten generieren manchmal nur 3 punkte einer klasse --> damit kann es in die andere klasse fallen Gewichtung!!!
     public void createTestData(int classCount) {
         //Erzeugen von Testdaten
         ArrayList<Point> points = new ArrayList<>();
@@ -47,5 +49,13 @@ public class ButtonAction {
         //Ausgabe des Ergebnisses für k Nachbaranalysen
         KNearestNeighbour test = new KNearestNeighbour(k);
         System.out.println("Klassifiziert in Klasse: " + test.calculateKNearestNeighbour(unclassifiedPoint, classifiedPoints));
+    }
+
+    public Point getUnclassifiedPoint() {
+        return unclassifiedPoint;
+    }
+
+    public ArrayList<Point> getClassifiedPoints() {
+        return classifiedPoints;
     }
 }

@@ -53,8 +53,8 @@ public class GUI extends JFrame {
         button.addActionListener(e -> {
             Plot2DPanel plot = new Plot2DPanel();
 
-            //Setze Aufloesung des Koordinatensystem von 0-10
-            plot.addLinePlot("", new double[]{0, 0}, new double[]{0, 0});
+            //Setze Aufloesung des Koordinatensystems
+            plot.addLinePlot("", new double[]{-10, -10}, new double[]{-10, -10});
             plot.addLinePlot("", new double[]{10, 10}, new double[]{10, 10});
 
             JFrame frame = new JFrame("KNearestNeighbour");
@@ -65,6 +65,26 @@ public class GUI extends JFrame {
             ButtonAction buttonAction = new ButtonAction();
             buttonAction.createTestData(classCount);
             buttonAction.getKNearestNeighbour(k);
+
+            //TODO: Die zugehörige Gruppenfarbe muss festgelegt werden!
+            //Zeichne klassifizierte Punkte in Koordinatensystem
+            for (Point p : buttonAction.getClassifiedPoints()) {
+                plot.addLinePlot("", Color.BLACK, new double[]{p.getX() - 0.1, p.getY() - 0.1},
+                        new double[]{p.getX() + 0.1, p.getY() + 0.1});
+                plot.addLinePlot("", Color.BLACK, new double[]{p.getX() + 0.1, p.getY() - 0.1},
+                        new double[]{p.getX() - 0.1, p.getY() + 0.1});
+            }
+
+            //Zeichne unklassifizierten Punkt in Koordinatensystem
+            plot.addLinePlot("", Color.GREEN, new double[]{buttonAction.getUnclassifiedPoint().getX() - 0.1,
+                            buttonAction.getUnclassifiedPoint().getY() - 0.1},
+                    new double[]{buttonAction.getUnclassifiedPoint().getX() + 0.1,
+                            buttonAction.getUnclassifiedPoint().getY() + 0.1});
+            plot.addLinePlot("", Color.GREEN, new double[]{buttonAction.getUnclassifiedPoint().getX() + 0.1,
+                            buttonAction.getUnclassifiedPoint().getY() - 0.1},
+                    new double[]{buttonAction.getUnclassifiedPoint().getX() - 0.1,
+                            buttonAction.getUnclassifiedPoint().getY() + 0.1});
+
         });
     }
 

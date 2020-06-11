@@ -8,12 +8,10 @@ public class Main {
         final int k = 5;
         //Anzahl an Klassen, die vorhanden sein sollen (muss noch implementiert werden)
         //Bleibt vorerst 2 zur Vereinfachung nur 2 Klassen
+        //TODO: Mehrere Klassen einführen!!! -> skalierbar
         final int classCount = 2;
 
         GUI gui = new GUI(k, classCount);
         gui.showUI();
-
-        //TODO: Punkte müssen noch eingezeichnet werden!
-
     }
 }
