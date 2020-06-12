@@ -19,18 +19,16 @@ public class Point {
         this.klasse = klasse;
     }
 
-    //Gibt die x-Koordinate eines Punktes zurueck
+
     public int getX() {
         return x;
     }
 
-    //Gibt die y-Koordinate eines Punktes zurueck
     public int getY() {
         return y;
     }
 
-    //Gibt die Klasse eines Punktes zurueck
-    public int getKlasse() {
+    public int getClassOfPoint() {
         return klasse;
     }
 }

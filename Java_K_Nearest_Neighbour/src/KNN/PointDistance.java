@@ -10,11 +10,10 @@ public class PointDistance implements Comparable<PointDistance> {
     }
 
     public Point getPoint() {
-
         return point;
     }
 
-    //Hier wird festgelegt, nach was sortiert werden soll. In diesem Fall nach der Distanz
+    //Hier wird festgelegt, nach was sortiert werden soll. In diesem Fall nach der Distanzgroesse.
     @Override
     public int compareTo(PointDistance o) {
         //Die Distanz wird immer aufgerundet
