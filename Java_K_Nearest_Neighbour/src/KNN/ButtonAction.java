@@ -1,6 +1,5 @@
 package KNN;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ButtonAction {
@@ -12,14 +11,20 @@ public class ButtonAction {
 
     }
 
-    //TODO: die testdaten generieren manchmal nur 3 punkte einer klasse --> damit kann es in die andere klasse fallen Gewichtung!!!
     public void createTestData(int classCount) {
         //Erzeugen von Testdaten
         ArrayList<Point> points = new ArrayList<>();
-        for (int i = 0; i <= 10; i++) {
+        //10 Testelemente werden erstellt.
+        for (int i = 0; i < 10; i++) {
             int zx;
             int zy;
-            int theClass = ((int) (Math.random() * classCount));
+            int theClass;
+            if (i < 5) {
+                theClass = 0;
+            } else {
+                theClass = 1;
+            }
+
             //Zur Zufallsgruppierung
             if (theClass == 1) {
                 //befinden sich im Bereich x = 5 bis 7 und y = 5 bis 7
@@ -45,10 +50,11 @@ public class ButtonAction {
         System.out.println("\nUnklassifizierter Punkt: x " + zzx + " y " + zzy + "\n");
     }
 
+    //Ausgabe des Ergebnisses für k Nachbaranalysen
     public void getKNearestNeighbour(int k) {
-        //Ausgabe des Ergebnisses für k Nachbaranalysen
-        KNearestNeighbour test = new KNearestNeighbour(k);
-        System.out.println("Klassifiziert in Klasse: " + test.calculateKNearestNeighbour(unclassifiedPoint, classifiedPoints));
+        KNearestNeighbour nearest = new KNearestNeighbour(k);
+        System.out.println("Klassifiziert in Klasse: " + nearest.calculateKNearestNeighbour(unclassifiedPoint,
+                classifiedPoints));
     }
 
     public Point getUnclassifiedPoint() {
