@@ -1,32 +1,29 @@
 package KNN;
 
 import org.math.plot.Plot2DPanel;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class GUI extends JFrame {
 
-    private int k;
-    private int classCount;
-    private double crossSize;
-    private int coor[];
+    private final int k;
+    private final double crossSize;
+    private final int[] coor;
 
-    public GUI(int k, int classCount, int[] coor, double crossSize) {
+    public GUI(int k, int[] coor, double crossSize) {
 
         this.k = k;
-        this.classCount = classCount;
         this.crossSize = crossSize;
         this.coor = coor;
     }
 
     public void showUI() {
 
-        //Layout des Menues festlegen
+        //Create layout of menu
         final int width = 600;
         final int height = 600;
 
-        setTitle("Menü");
+        setTitle("Menu");
         setSize(width, height);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,12 +35,12 @@ public class GUI extends JFrame {
 
     private void buttons() {
 
-        //Layout der Buttons festlegen
+        //Create layout of the buttons
         final int x = 200;
-        final int y[] = {200, 300};
-        final int size[] = {200, 40};
-        JButton drawEu = new JButton("Euklidische Distanz");
-        JButton close = new JButton("Schließen");
+        final int[] y = {200, 300};
+        final int[] size = {200, 40};
+        JButton drawEu = new JButton("Euclidean distance");
+        JButton close = new JButton("Close");
         drawEu.setBounds(x, y[0], size[0], size[1]);
         close.setBounds(x, y[1], size[0], size[1]);
 
@@ -54,7 +51,7 @@ public class GUI extends JFrame {
         cont.add(close);
         cont.add(drawEu);
 
-        //Aufruf des ActionListeners
+        //Call of the action listener
         buttonExit(close);
         buttonEucl(drawEu);
     }
@@ -65,10 +62,10 @@ public class GUI extends JFrame {
             DrawPointsHelper draw = new DrawPointsHelper(crossSize);
             ButtonAction buttonAction = new ButtonAction();
 
-            buttonAction.createTestData(classCount);
+            buttonAction.createTestData();
             buttonAction.getKNearestNeighbour(k);
 
-            //Zeichne Koordinatensystem mit Punkte
+            //Draw coordinate system with points
             drawCoordinateSystem(plot);
             draw.drawUnclassifiedPoint(buttonAction.getUnclassifiedPoint(), plot);
             draw.drawClassifiedPoints(buttonAction.getClassifiedPoints(), plot);
@@ -79,17 +76,17 @@ public class GUI extends JFrame {
         button.addActionListener(e -> System.exit(1));
     }
 
-    //Koordinatensystem fuer GUI
+    //Coordinate system of GUI
     private void drawCoordinateSystem(Plot2DPanel plot) {
 
-        final int width = 1200;
-        final int height = 800;
+        final int width = 1000;
+        final int height = 1000;
 
-        //Setze Aufloesung des Koordinatensystems
+        //Set resolution of the coordinate system
         plot.addLinePlot("", new double[]{coor[0], coor[0]}, new double[]{coor[0], coor[0]});
         plot.addLinePlot("", new double[]{coor[1], coor[1]}, new double[]{coor[1], coor[1]});
 
-        //Layout des Koordinatensystems
+        //Layout of coordinate system
         JFrame frame = new JFrame("KNearestNeighbour");
         frame.setContentPane(plot);
         frame.setSize(width, height);

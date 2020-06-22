@@ -4,7 +4,7 @@ import java.util.*;
 
 public class KNearestNeighbour {
 
-    private int k;
+    private final int k;
 
     public KNearestNeighbour(int k) {
         this.k = k;
@@ -12,26 +12,25 @@ public class KNearestNeighbour {
 
     public int calculateKNearestNeighbour(Point unclassifiedPoint, ArrayList<Point> points) {
 
-        //TODO: Groesse der Klassenanzahl angeben
         int[] classes = new int[2];
         CalculateDistanceHelper distance = new CalculateDistanceHelper();
         List<PointDistance> pointDistances = new ArrayList<>();
 
-        //Berechne fuer jeden Punkt die Distanz zum unklassifizierten Punkt und speicher ihn in pointDistances mit
-        //der berechneten Distanz
+        //Calculate distance of every point separately to unclassified point and save the point with the calculated
+        //distance
         for (Point p : points) {
             pointDistances.add(new PointDistance(p, distance.getEuclideanDistance(unclassifiedPoint, p)));
         }
 
-        //Sortiere die Liste aufsteigend nach der Distanz der Punkte
+        //Sorts list ascended by the value of the distance
         Collections.sort(pointDistances);
         List<PointDistance> resultingPoints = pointDistances.subList(0, k);
 
-        //Durchlaufe die naechsten k Punkte und zaehle den Klassen Counter hoch
-        System.out.println("Klassen der nächsten k Punkte");
+        //Run through the k-nearest points and count up the class counter
+        System.out.println("Classes of the k nearest points:");
         for (PointDistance pd : resultingPoints) {
             int getClass = pd.getPoint().getClassOfPoint();
-            System.out.println("Klasse: " + getClass);
+            System.out.println("Class: " + getClass);
             if (getClass == 0) {
                 classes[0]++;
             } else {
@@ -39,7 +38,7 @@ public class KNearestNeighbour {
             }
         }
 
-        //Ueberpruefe, wie viele Punkte einer Klasse naeher sind
+        //Validate how many points of which class are nearer
         if (classes[0] > classes[1]) {
             return 0;
         } else {

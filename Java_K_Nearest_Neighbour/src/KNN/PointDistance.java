@@ -1,8 +1,8 @@
 package KNN;
 
 public class PointDistance implements Comparable<PointDistance> {
-    private Point point;
-    private double distance;
+    private final Point point;
+    private final double distance;
 
     public PointDistance(Point point, double distance) {
         this.point = point;
@@ -13,10 +13,10 @@ public class PointDistance implements Comparable<PointDistance> {
         return point;
     }
 
-    //Hier wird festgelegt, nach was sortiert werden soll. In diesem Fall nach der Distanzgroesse.
+    //The list is sorted by the value of the distance
     @Override
     public int compareTo(PointDistance o) {
-        //Die Distanz wird immer aufgerundet
+        //The distance is rounded up
         return ((int) Math.ceil(this.distance - o.distance));
     }
 }

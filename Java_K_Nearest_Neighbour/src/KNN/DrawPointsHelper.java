@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class DrawPointsHelper {
 
-    double crossSize;
+    private final double crossSize;
 
     public DrawPointsHelper(double crossSize) {
 
